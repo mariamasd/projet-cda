@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block title %}Inscription{% endblock %}
+
+    {% block container %}
+        <h1 style="text-align: center;"><i class="bi bi-person-fill-add"></i>INSRIPTION </h1>
+            <h3>Créer Votre compte dans notre site </h3>
+            <hr class="mb-3">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+        
+                    </div>
+
+    {{ form_start(form) }}
+    {{ form_widget(form._token) }}
+    <form action="{{path('app_register')}}" method="POST">
+        <div class="mb-3">
+          <label for="InputEmail1" class="form-label"> Addresse Email</label>
+          {{ form_widget(form.email) }}
+          <div id="emailHelp" class="form-text">Ne confondez pas votre Adresse email.</div>
+        </div>
+        <div class="mb-3">
+          <label for="InputEmail1" class="form-label"> First Name</label>
+          {{ form_widget(form.first_name) }}
+        </div>
+        <div class="mb-3">
+          <label for="InputEmail1" class="form-label"> Last Name</label>
+          {{ form_widget(form.last_name) }}
+        </div>
+        <div class="mb-3">
+            <label for="Inputpseudo" class="form-label">UserName</label>
+            {{ form_widget(form.username) }}
+          </div>
+          <div class="mb-3">
+            <label for="Inputpseudo" class="form-label">Role</label>
+            {{ form_widget(form.roles) }}
+          </div>
+        <div class="mb-3">
+          <label for="InputPassword1" class="form-label">Mot de Passe</label>
+          {{ form_widget(form.plainPassword) }}
+        </div>
+        <div class="mb-3">
+            <label for="InputPassword1" class="form-label">Condition</label>
+            {{ form_widget(form.agreeTerms) }}
+          </div>
+        <button type="submit" class="btn btn-primary btn-text-center">S'inscrire</button>
+      </form>
+</div>
+<div class="col-lg-2 col-md-2">
+
+</div>
+</div>
+{{ form_end(form) }}
+{% endblock %}
