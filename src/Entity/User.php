@@ -50,12 +50,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'patient', targetEntity: Resultat::class)]
     private Collection $resultats;
 
+    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Patient::class)]
+    private Collection $user;
+
     public function __construct()
     {
         $this->specialisation = new ArrayCollection();
         $this->secretaires = new ArrayCollection();
         $this->rv = new ArrayCollection();
         $this->resultats = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -283,4 +287,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-}
+
+    /**
+     * @return Collection<int, Patient>
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
+    }
+
+    public function addUser(Patient $user): static
+    {
+        if (!$this->user->contains($user)) {
+            $this->user->add($user);
+            $user->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(Patient $user): static
+    {
+        if ($this->user->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getUserId() === $this) {
+                $user->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+        public function __toString():string
+        {
+            return $this->getUsername() ?? '';
+
+        }
+
+    }

@@ -1,0 +1,67 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Rendez-vous{% endblock %}
+
+{% block container %}
+    <nav class="navbar navbar-expand-lg bg-color fixed-top" style="background-color: #007bff;">
+		<div class="container-fluid d-flex justify-content-between align-items-center">
+			<div>
+				<a class="navbar-brand" href="#">
+					<img src="{{ asset('images/Labo-logo.png') }}" width="100px">
+				</a>
+			</div>
+			<h1 style="color: white; text-transform: uppercase; font-size: 2em; font-family: 'Kdam Thmor Pro', sans-serif;">Laboratoire médicale</h1>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_home' ? 'active' : '' }}" href="{{path("admin")}}" style="color: white; margin-right:1em; font-size: 1em;">
+							Dashbord
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+    <section style="margin-top: 100px;">
+
+    <h1>Rendez-vous</h1>
+    <style>
+        .form-border {
+            height:100vh ;
+            width: 200vh;
+            border: 1px solid blue;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-label {
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+
+    {{ form_start(form, {'attr': {'class': 'form-border'}}) }}
+        {{ form_row(form.dateRV, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_row(form.status, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_row(form.patient, {'label_attr': {'class': 'form-label'}}) }}
+        <button type="submit">Submit</button>
+    {{ form_end(form) }}
+
+    </section>
+{% endblock %}
