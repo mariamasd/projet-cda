@@ -6,15 +6,18 @@
     {{ parent() }}
     <style>
         body {
-            background: #222D32;
+            background: #fff1c1;
             font-family: 'Roboto', sans-serif;
         }
 
-        .login-box {
-            margin-top: 75px;
-            height: auto;
-            background: #1A2226;
-            text-align: center;
+        .login-box { 
+            border-radius: 3%;
+            background-image: linear-gradient(to right bottom, #e3ecfb, #dce4fb, #d7dcfa, #d5d3f8, #d5caf4);
+            margin-top: 2rem;
+            padding-top: 1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
         }
 
@@ -28,33 +31,33 @@
         }
 
         .login-title {
-            margin-top: 15px;
+            
             text-align: center;
             font-size: 30px;
             letter-spacing: 2px;
-            margin-top: 15px;
+            
             font-weight: bold;
-            color: #ECF0F5;
+            color: black;
         }
 
         .login-form {
             margin-top: 25px;
             text-align: left;
         }
+        
 
         input[type=email], input[type=password] {
-            background-color: #1A2226;
-            border: none;
-            border-bottom: 2px solid #0DB8DE;
-            border-top: 0px;
-            border-radius: 0px;
+           border-radius: 1rem;
+
+            border: 1px solid black;
+            
+            
             font-weight: bold;
             outline: 0;
             margin-bottom: 20px;
             padding-left: 0px;
-            color: #ECF0F5;
+            
         }
-
         .form-group {
             margin-bottom: 40px;
             outline: 0px;
@@ -66,8 +69,8 @@
             box-shadow: none;
             border-bottom: 2px solid #0DB8DE;
             outline: 0;
-            background-color: #1A2226;
-            color: #ECF0F5;
+           
+            
         }
 
         label {
@@ -76,7 +79,7 @@
 
         .form-control-label {
             font-size: 10px;
-            color: #6C6C6C;
+            color: black;
             font-weight: bold;
             letter-spacing: 1px;
         }
@@ -108,28 +111,93 @@
         .login-text {
             text-align: left;
             padding-left: 0px;
-            color: #A2A4A4;
+            
         }
 
         .loginbttm {
             padding: 0px;
         }
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
     </style>
 {% endblock %}
 
 {% block container %}
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-2"></div>
-            <div class="col-lg-6 col-md-8 login-box">
-                <div class="col-lg-12 login-key">
-                    <i class="fa fa-key" aria-hidden="true"></i>
-                </div>
-                <div class="col-lg-12 login-title">
-                    Labo Connexion
-                </div>
+<nav id="nav-1" class="navbar navbar-expand-lg bg-color " style="background-color: #007bff;">
+		<div class="container-fluid d-flex justify-content-between align-items-center">
+			<div>
+				<a class="navbar-brand" href="{{path('app_home')}}">
+					<img src="{{ asset('images/logo1.jpg') }}" width="100px">
+				</a>
+			</div>
+			<h1 style="color: white; text-transform: uppercase; font-size: 2em; font-family: 'Kdam Thmor Pro', sans-serif;">Laboratoire médicale</h1>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-                <form method="post" class="col-lg-12 login-form">
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_home' ? 'active' : '' }}" href="{{path('app_home')}}" style="color: white; margin-right:1em; font-size: 0.8em;">Accueil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-uppercase {{ app.request.get('_route') == 'a_propos' ? 'active' : '' }}" href="{{path('app_home')}}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">A Propos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-uppercase {{ app.request.get('_route') == 'services' ? 'active' : '' }}" href="{{path('app_home')}}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Services</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-uppercase " href="{{path('app_contact')}}" style="color: white; margin-right:1em; font-size: 0.8em; margin-left:1em;">Contact</a>
+					</li>
+					{% if app.user %}
+						<li class="nav-item">
+							<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_logout' ? 'active' : '' }}" href="{{ path('app_logout') }}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Déconnexion</a>
+						</li>
+						{% if app.user %}
+							{% if is_granted('ROLE_SECRETAIRE') %}
+								<li class="nav-item">
+									<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_logout' ? 'active' : '' }}" href="{{ path('secretaire') }}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Dasbord</a>
+								</li>
+							{% elseif is_granted('ROLE_PATIENT') %}
+								<li class="nav-item">
+									<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_logout' ? 'active' : '' }}" href="{{ path('admin') }}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Dasbord</a>
+								</li>
+							{% elseif is_granted('ROLE_LABORANTIN') %}
+								<li class="nav-item">
+									<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_logout' ? 'active' : '' }}" href="{{ path('laborantin') }}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Dasbord</a>
+								</li>
+							{% endif %}
+						{% endif %}
+
+					{% else %}
+						<li class="nav-item">
+							<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_login' ? 'active' : '' }}" href="{{ path('app_login') }}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Se connecter</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_register' ? 'active' : '' }}" href="{{ path('app_register') }}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Inscription</a>
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</nav>
+                 <main class="from-signin login-box w-50 mx-auto">
+
+                <form method="post" >
                     {% if error %}
                         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
@@ -140,15 +208,15 @@
                         </div>
                     {% endif %}
 
-                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                    <div class="form-group">
+                    <h1 class="h3 mb-3 font-weight-normal">Connectez-vous</h1>
+                    
                         <label class="form-control-label">Email</label>
-                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-                    </div>
-                    <div class="form-group">
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Votre email" required autofocus>
+                    
+                    
                         <label class="form-control-label">Password</label>
-                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-                    </div>
+                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Votre mot de pass" required>
+                   
 
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
@@ -156,13 +224,76 @@
                         <div class="col-lg-6 login-btm login-text">
                             <!-- Error Message -->
                         </div>
-                        <div class="col-lg-6 login-btm login-button">
-                            <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Connecter</button>
+                                <button type="button" class="btn btn-success" ><a class="nav-link" href="{{ path('app_register')}}">Créer un compte</a></button>  </form>
+
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="col-lg-3 col-md-2"></div>
-        </div>
-    </div>
+            </main>
+    <section id="4" style=" background-color: #007bff; color: white; margin-top: 5vh;">
+			<div>
+				<!-- FOOTER -->
+				<footer class="w-100 py-4 flex-shrink-0">
+					<div class="container py-4">
+						<div class="row gy-4 gx-5">
+							<div class="col-lg-4 col-md-6">
+								<h5 class="h1">Labo.</h5>
+								<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+								<p class="small mb-0">&copy; Copyrights. All rights reserved.
+									<a class="text-white" href="#">Bootstrapious.com</a>
+								</p>
+							</div>
+							<div class="col-lg-2 col-md-6">
+								<h5 class="mb-3">Quick links</h5>
+								<ul class="list-unstyled">
+									<li>
+										<a class="text-white" href="#">Home</a>
+									</li>
+									<li>
+										<a class="text-white" href="#">About </a>
+									</li>
+									<li>
+										<a class="text-white" href="#">Get started</a>
+									</li>
+									<li>
+										<a class="text-white" href="#">FAQ</a>
+									</li>
+								</ul>
+							</div>
+							<div class="col-lg-2 col-md-6">
+								<h5 class="mb-3">Quick links</h5>
+								<ul class="list-unstyled">
+									<li>
+										<a class="text-white" href="#">Home</a>
+									</li>
+									<li>
+										<a class="text-white" href="#">About</a>
+									</li>
+									<li>
+										<a class="text-white" href="#">Get started</a>
+									</li>
+									<li>
+										<a class="text-white" href="#">FAQ</a>
+									</li>
+								</ul>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<h5 class="mb-3">Newsletter</h5>
+								<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+								<form action="#">
+									<div class="input-group mb-3">
+										<input class="form-control" type="text" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+										<button class="btn btn-primary" id="button-addon2" type="button">
+											<i class="fas fa-paper-plane"></i>
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</section>
 {% endblock %}

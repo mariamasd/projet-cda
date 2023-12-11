@@ -4,6 +4,14 @@
 {% endblock %}
 
 {% block container %}
+<style>
+	.currentHover:hover{
+          opacity: 1;
+	}
+	img : hover{
+		opacity: 1
+	}
+</style>
 	<nav id="nav-1" class="navbar navbar-expand-lg bg-color fixed-top" style="background-color: #007bff;">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div>
@@ -28,7 +36,7 @@
 						<a class="nav-link text-uppercase {{ app.request.get('_route') == 'services' ? 'active' : '' }}" href="#3" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Services</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link text-uppercase {{ app.request.get('_route') == 'contact' ? 'active' : '' }}" href="#4" style="color: white; margin-right:1em; font-size: 0.8em; margin-left:1em;">Contact</a>
+						<a class="nav-link text-uppercase " href="{{path('app_contact')}}" style="color: white; margin-right:1em; font-size: 0.8em; margin-left:1em;">Contact</a>
 					</li>
 					{% if app.user %}
 						<li class="nav-item">
@@ -52,7 +60,7 @@
 
 					{% else %}
 						<li class="nav-item">
-							<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_login' ? 'active' : '' }}" href="{{ path('app_login') }}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Connexion</a>
+							<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_login' ? 'active' : '' }}" href="{{ path('app_login') }}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Se connecter</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link text-uppercase {{ app.request.get('_route') == 'app_register' ? 'active' : '' }}" href="{{ path('app_register') }}" style="color: white; margin-right:1em; margin-left:1em; font-size: 0.8em;">Inscription</a>
@@ -75,7 +83,7 @@
 							<p style="color: #00284d;">Dimanche : 7h00 - 16h30</p>
 						</div>
 						<div>
-							<a href="#" style="display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Connection</a>
+							<a href="{{ path('app_register')}}" style="display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Connection</a>
 						</div>
 					</div>
 				</div>
@@ -89,7 +97,7 @@
 
 					<div class="col-4">
 						<div style="text-align: center; color: white; margin-bottom: 3em;">
-							<h1 style="font-size: 3em; color: #007bff; margin-bottom: 2em; margin-top: 2em;">A PROPOS</h1>
+							<h1 style="font-size: 3em; color: #007bff; margin-bottom: 1em; margin-top: 1em;">A PROPOS</h1>
 							<p style="color: #003366; margin-bottom: 6em; text-align: center; ">Bienvenue chez LABO, votre partenaire de confiance pour des services d'analyse médicale de qualité. Forts de notre engagement envers l'excellence, nous sommes déterminés à fournir des résultats précis et rapides pour répondre à vos besoins de santé.Nous investissons continuellement dans les dernières technologies pour assurer la précision et la fiabilité de nos analyses. Notre laboratoire est équipé des instruments les plus modernes, gérés par une équipe de techniciens compétents.
 							</p>
 						</div>
@@ -151,22 +159,21 @@
 		</section>
 
 
-		<section id="3" style="height: 100vh; background-color: #f0f0f0;">
+		<section id="3" style=" background-color: #f0f0f0;">
 			<div class="container-fluid" style="margin-left: 2em; margin-right: 2em; height: 100%; display: flex; align-items: center;">
 				<div class="row">
 					<div class="col-4"></div>
-
+                  
 					<div class="col-4">
-						<div style="text-align: center; color: white; margin-bottom: 3em;">
+						<div style="text-align: center; color: white; ">
 							<h1 style="font-size: 3em; color: #007bff; margin-bottom: 2em; margin-top: 2em;">SERVICES</h1>
-							<p style="color: #003366; margin-bottom: 6em; text-align: center;">Bienvenue chez LABO, votre partenaire de confiance pour des services d'analyse médicale de qualité. Forts de notre engagement envers l'excellence, nous sommes déterminés à fournir des résultats précis et rapides pour répondre à vos besoins de santé. Nous investissons continuellement dans les dernières technologies pour assurer la précision et la fiabilité de nos analyses. Notre laboratoire est équipé des instruments les plus modernes, gérés par une équipe de techniciens compétents.
 							</p>
 						</div>
 					</div>
-
+				
 					<!-- Bootstrap Card Integration -->
 					<div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-						<div class="col-3">
+						<div class="col-3 currentHover" >
 							<div class="card h-60">
 								<img src="{{ asset('images/image3.jpg') }}" class="card-img-top" alt="...">
 								<div class="card-body">
@@ -195,7 +202,7 @@
 			</div>
 		</section>
 
-		<section id="4" style="height: 70vh; background-color: #007bff; color: white; margin-top: 5vh;">
+		<section id="4" style="background-color: #007bff; color: white; margin-top: 5vh;">
 			<div>
 				<!-- FOOTER -->
 				<footer class="w-100 py-4 flex-shrink-0">
